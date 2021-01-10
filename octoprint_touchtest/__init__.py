@@ -15,7 +15,8 @@ class TouchtestPlugin(octoprint.plugin.SettingsPlugin,
             bedDepth=200.0,
             edgeOffset=15.0,
             feedrate=7500.0,
-					  zOffset=1.0
+            zOffset=1.0,
+	    zTravelOffset=5.0
         )
 
     ##~~ AssetPlugin mixin
