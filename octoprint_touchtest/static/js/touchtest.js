@@ -48,6 +48,8 @@ $(function() {
       self.bedDepth(self.settings.settings.plugins.touchtest.bedDepth());
       self.edgeOffset(self.settings.settings.plugins.touchtest.edgeOffset());
       self.feedrate(self.settings.settings.plugins.touchtest.feedrate());
+      self.zOffset(self.settings.settings.plugins.touchtest.zOffset());
+      self.zTravelOffset(self.settings.settings.plugins.touchtest.zTravelOffset());
     }
 
     self.fromCurrentData = function(data) {
