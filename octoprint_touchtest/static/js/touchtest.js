@@ -15,6 +15,7 @@ $(function() {
     self.bedWidth = ko.observable("200.00")
     self.bedDepth = ko.observable("200.00")
     self.edgeOffset = ko.observable("15.00")
+    self.zOffset = ko.observable("1.00")
     self.feedrate = ko.observable("1000")
     self.isOperational = ko.observable(undefined);
     self.isPrinting = ko.observable(undefined);
@@ -24,6 +25,7 @@ $(function() {
       var dEffective = self.bedDepth() - 2* self.edgeOffset()
       var xPos = 1.0*self.edgeOffset() + (wMult*wEffective);
       var yPos = 1.0*self.edgeOffset() + (dMult*dEffective);
+      var zPos = 1.0*self.zOffset();
 
       var code = [];
       if (!homed) { //Home the printer if not homed
@@ -32,9 +34,10 @@ $(function() {
       }
 
       code.push("G90"); //Set to Absolute Positioning
-      code.push("G0 Z1"); //Raise bed 1mm
+      code.push("G0 Z" + zPos); // Go to zoffset
+      // code.push("G0 Z1"); //Raise bed 1mm
       code.push("G0 X" + xPos + " Y" + yPos + " F" + self.feedrate()); //Go to desired position
-      code.push("G0 Z0"); //Lower bed back to zero
+      // code.push("G0 Z0"); //Lower bed back to zero
 
       OctoPrint.control.sendGcode(code);
     }
